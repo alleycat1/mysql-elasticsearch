@@ -222,6 +222,7 @@ func (s *riverTestSuite) testPrepareData(c *C) {
 	s.testExecute(c, "INSERT INTO test_river (id, title, content, tenum, tset, tbit) VALUES (?, ?, ?, ?, ?, ?)", 4, "fouth", "hello go-mysql-elasticserach 4", "e1", "a,b,c", 0)
 	s.testExecute(c, "INSERT INTO test_for_id (id, title, content, tenum, tset) VALUES (?, ?, ?, ?, ?)", 1, "first", "hello go 1", "e1", "a,b")
 	s.testExecute(c, "INSERT INTO test_for_json (id, info) VALUES (?, ?)", 9200, "{\"first\": \"a\", \"second\": \"b\"}")
+	s.testExecute(c, "INSERT INTO test_for_id (id, title, content, tenum, tset) VALUES (?, ?, ?, ?, ?)", 1, "first", "hello go 2", "e2", "b,c")
 
 	for i := 0; i < 10; i++ {
 		table := fmt.Sprintf("test_river_%04d", i)
@@ -232,6 +233,7 @@ func (s *riverTestSuite) testPrepareData(c *C) {
 
 	s.testExecute(c, "SET sql_mode = '';") // clear sql_mode to allow empty dates
 	s.testExecute(c, "INSERT INTO test_river (id, title, content, tenum, tset, tdatetime, mydate, tdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", 20, "test empty datetime", "date test 20", "e1", "a,b", "0000-00-00 00:00:00", 0, "0000-00-00")
+	s.testExecute(c, "INSERT INTO test_river (id, title, content, tenum, tset, tdatetime, mydate, tdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", 21, "test empty datetime", "date test 21", "e2", "b,c", "0000-00-00 00:00:00", 0, "0000-00-00")
 
 	// test ip
 	s.testExecute(c, "INSERT test_river (id, ip) VALUES (?, ?)", 17, 0)
